@@ -38,20 +38,17 @@ namespace WeatherStation.Data
             return instance;
         }
 
-        public List<Weather> GetWeather(string date)
+        public Weather GetWeather(string date)
         {
-            List<Weather> dateList = new List<Weather>();
             long index = 0;
             foreach (var i in measurements)
             {
-                if (string.Compare(date, i.Value.date.ToString()) == 0)
+                if (string.Compare(date, i.Value.date) == 0)
                 {
                     index = i.Value.id;
-                    dateList.Add(measurements[index]);
                 }
             }
-
-            return dateList;
+            return measurements[index];
         }
 
         public Weather getLatest()

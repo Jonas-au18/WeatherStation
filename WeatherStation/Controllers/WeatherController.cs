@@ -25,16 +25,15 @@ namespace WeatherStation.Controllers
         }
         
         [HttpGet("{date}", Name = "GetByDate")]
-      public ActionResult<List<Weather>> get(string date)
+      public ActionResult<Weather> get(string date)
       {
-          List<Weather> byDate = new List<Weather>();
           if (string.Compare(date, "-1") == 0)
           {
-              byDate.Add(myStation.getLatest());
-              return byDate;
+              return myStation.getLatest();
           }
-          byDate = myStation.GetWeather(date);
-          return byDate;
+
+          Weather myWeather = myStation.GetWeather(date);
+          return myWeather;
       }
 
       // POST: api/Weather
